@@ -165,6 +165,9 @@ cython_debug/
 # Original Database
 original_database/
 
+# Data Warehouse
+ElProfesional_DW
+
 # Ignore ODBC connection info
 secrets.ini
 
