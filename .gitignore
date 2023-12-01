@@ -165,8 +165,14 @@ cython_debug/
 # Original Database
 original_database/
 
+# Ignore ODBC connection info
+secrets.ini
+
 # Other files
 other/
 
 # ODBC Driver info
 ODBC/
+
+# ETL Notebook
+ETL_DW_ElProfesional.ipynb
