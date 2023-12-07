@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS Renglon_Factura (
 	IDVendedor INT,
 	NroOrden INT,
 	total_venta_renglon DECIMAL(10, 2),
-	cantidad_articulos_renglon INT,
+	cantidad_articulos_renglon DECIMAL(10, 2),
 	precio_unitario DECIMAL(12, 2),
 	precio_unitario_iva DECIMAL(12, 2),
 	FOREIGN KEY (IDFecha) REFERENCES Tiempo(IDFecha),
