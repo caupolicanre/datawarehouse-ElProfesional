@@ -18,7 +18,7 @@ import pandas as pd # Handling of dataframes
 import numpy as np # Handling of arrays
 import re # Regular expressions
 
-from modules.update_dimensions_table import actualizarTablaDimension, actualizarTablaDimensionIntPK # Function to update dimensions tables
+from modules.update_dimensions_table import updateDimensionTable, updateDimensionTableIntPK # Function to update dimensions tables
 
 
 
@@ -648,10 +648,10 @@ df_TiempoFiltered['mes_nombre'] = df_TiempoFiltered['mes_nombre'].map(mapeo_mese
 # Rename columns
 dimension_TipoCliente = df_TipoClienteFiltered.rename(columns={'Tipo_cliente': 'idtipocliente',
                                                               'Detalle': 'tipo_cliente'})
-dimension_TipoCliente = actualizarTablaDimension(engine_cubo, 'tipocliente', dimension_TipoCliente, pk='idtipocliente')
+dimension_TipoCliente = updateDimensionTable(engine_cubo, 'tipocliente', dimension_TipoCliente, pk='idtipocliente')
 
 # Update 'Localidades' table
-dimension_Localidades = actualizarTablaDimension(engine_cubo, 'localidades', df_LocalidadesFiltered, pk='idlocalidad')
+dimension_Localidades = updateDimensionTable(engine_cubo, 'localidades', df_LocalidadesFiltered, pk='idlocalidad')
 
 # Update 'Clientes' dimension
 dimension_Clientes = pd.DataFrame({
@@ -667,17 +667,17 @@ dimension_Clientes = dimension_Clientes.rename(columns={'NroCuenta': 'idcliente'
                                                         'Razon_Social': 'razon_social',
                                                         'Tipo_cliente': 'tipo_cliente'})
 
-dimension_Clientes = actualizarTablaDimensionIntPK(engine_cubo, 'clientes', dimension_Clientes, pk='idcliente')
+dimension_Clientes = updateDimensionTableIntPK(engine_cubo, 'clientes', dimension_Clientes, pk='idcliente')
 
 
 # ======================
 #  Dimension: Articulos
 # ======================
 # Update 'Rubros' table
-dimension_Rubros = actualizarTablaDimensionIntPK(engine_cubo, 'rubros', df_RubrosFiltered, pk='idrubro')
+dimension_Rubros = updateDimensionTableIntPK(engine_cubo, 'rubros', df_RubrosFiltered, pk='idrubro')
 
 # Update 'Articulos' dimension
-dimension_Articulos = actualizarTablaDimensionIntPK(engine_cubo, 'articulos', df_ArticulosFiltered, pk='idarticulo')
+dimension_Articulos = updateDimensionTableIntPK(engine_cubo, 'articulos', df_ArticulosFiltered, pk='idarticulo')
 
 
 # =====================
@@ -687,14 +687,14 @@ dimension_Articulos = actualizarTablaDimensionIntPK(engine_cubo, 'articulos', df
 # Rename columns
 dimension_Vendedores = df_VendedorFiltered.rename(columns={'Cod_Vendedor': 'idvendedor',
                                                           'Nombre': 'nombre'})
-dimension_Vendedores = actualizarTablaDimensionIntPK(engine_cubo, 'vendedores', dimension_Vendedores, pk='idvendedor')
+dimension_Vendedores = updateDimensionTableIntPK(engine_cubo, 'vendedores', dimension_Vendedores, pk='idvendedor')
 
 
 # ===================
 #  Dimension: Tiempo
 # ===================
 # Update 'Tiempo' dimension
-dimension_Tiempo = actualizarTablaDimension(engine_cubo, 'tiempo', df_TiempoFiltered, pk='idfecha')
+dimension_Tiempo = updateDimensionTable(engine_cubo, 'tiempo', df_TiempoFiltered, pk='idfecha')
 
 
 # ==================
@@ -710,7 +710,7 @@ dimension_Orden = dimension_Orden.sort_values(by=['NroOrden'])
 dimension_Orden = dimension_Orden.rename(columns={'NroOrden': 'nroorden',
                                                   'total_orden': 'total_venta'})
 
-dimension_Orden = actualizarTablaDimensionIntPK(engine_cubo, 'orden', dimension_Orden, pk='nroorden')
+dimension_Orden = updateDimensionTableIntPK(engine_cubo, 'orden', dimension_Orden, pk='nroorden')
 
 
 
@@ -741,4 +741,4 @@ df_HechosRenglonFactura = pd.DataFrame({
 })
 
 # Update 'HechosRenglonFactura' fact table
-fact_HechosRenglonFactura = actualizarTablaDimension(engine_cubo, 'renglon_factura', df_HechosRenglonFactura, pk='idrenglon_factura')
+fact_HechosRenglonFactura = updateDimensionTable(engine_cubo, 'renglon_factura', df_HechosRenglonFactura, pk='idrenglon_factura')

@@ -1,6 +1,6 @@
 import pandas as pd
 
-def actualizarTablaDimension(engine, table, data, pk="id"):
+def updateDimensionTable(engine, table, data, pk="id"):
     """
     Author: Maximiliano Fernandez
 
@@ -37,7 +37,7 @@ def actualizarTablaDimension(engine, table, data, pk="id"):
     return dimension_df
 
 
-def actualizarTablaDimensionIntPK(engine, table, data, pk="id"):
+def updateDimensionTableIntPK(engine, table, data, pk="id"):
     """
     Update a dimension table in a database using the provided engine, table name, data, and primary key.
     This function is used when the primary key is an integer and not a serial.
